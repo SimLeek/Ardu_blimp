@@ -3,7 +3,7 @@
 This is a testing platform for various robotics using Arduino, complete with a parser for the input code
 
 
-##Availablt Input
+##Current Availablt Input
 
 command format \<regex\>: /(.{2})([a-z]+[0-9\\.]+)*!
 
