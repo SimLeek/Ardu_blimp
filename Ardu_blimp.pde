@@ -1,6 +1,7 @@
 //blimp v0.10
 #include "movement.h"
 #include "parser.h"
+#include "pitches.h"
 
 void setup(){
   setup_movement();
@@ -22,4 +23,5 @@ void loop(){
      lex(inByte);
   }
   movement_loop();
+  melody_loop();
 }

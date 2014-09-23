@@ -8,6 +8,7 @@
 
 #include "parser.h"
 #include "movement.h"
+#include "pitches.h"
 
 //include Arduino commands
 #if ARDUINO <= 23
@@ -481,6 +482,482 @@ void Pqmark_orientation(){
   }
 }
 
+void Pplay_tone();
+
+void Ptone_dur(){
+  float f=atof(buff);
+  melody_dur_buff[melody_buff_loc]=1000000.0/f;
+  melody_buff_loc+=1;
+  if(melody_buff_loc>64){
+    Serial.println("Error: melody too long");
+    Serial.println("Waiting for '!'");
+    rdp=Pinvalid;
+  }
+  else{
+    rdp=Pplay_tone;
+  }
+}
+
+void Ptone_duration(){
+  if(strcmp(buff,"l")==0){
+    rdp=Ptone_dur;
+  }
+  else{
+    Serial.print("Error: invalid syntax. Expected '_' preceeding duration, got '");
+    Serial.println(buff);
+    Serial.println("Waiting for'!'");
+    rdp=Pinvalid;
+  }
+}
+
+void Ptone_scale(){
+  
+  float f=atof(buff);
+  int i=f;
+  switch(mtone){
+    case A:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_A1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_A2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_A3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_A4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_A5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_A6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_A7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case B:
+      switch(i){
+        case 0:
+          melody_tone_buff[melody_buff_loc]=NOTE_B0;
+          break;
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_B1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_B2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_B3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_B4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_B5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_B6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_B7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case C:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_C1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_C2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_C3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_C4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_C5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_C6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_C7;
+          break;
+        case 8:
+          melody_tone_buff[melody_buff_loc]=NOTE_C8;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case D:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_D1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_D2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_D3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_D4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_D5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_D6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_D7;
+          break;
+        case 8:
+          melody_tone_buff[melody_buff_loc]=NOTE_D8;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case E:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_E1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_E2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_E3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_E4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_E5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_E6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_E7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case F:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_F1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_F2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_F3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_F4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_F5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_F6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_F7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case G:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_G1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_G2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_G3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_G4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_G5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_G6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_G7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case AS:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_AS7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case CS:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS7;
+          break;
+        case 8:
+          melody_tone_buff[melody_buff_loc]=NOTE_CS8;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case DS:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS7;
+          break;
+        case 8:
+          melody_tone_buff[melody_buff_loc]=NOTE_DS8;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case FS:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_FS7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case GS:
+      switch(i){
+        case 1:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS1;
+          break;
+        case 2:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS2;
+          break;
+        case 3:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS3;
+          break;
+        case 4:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS4;
+          break;
+        case 5:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS5;
+          break;
+        case 6:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS6;
+          break;
+        case 7:
+          melody_tone_buff[melody_buff_loc]=NOTE_GS7;
+          break;
+        default:
+          //error: invalid tone
+          rdp=Pinvalid;
+          break;
+      }
+      break;
+    case SIL:
+      melody_tone_buff[melody_buff_loc]=0;
+      break;
+  }
+  if(rdp!=Pinvalid){
+    rdp=Ptone_duration;
+  }
+  else{
+    Serial.print("Error: invalid scale:\t");Serial.println(i);
+    Serial.println("Waiting for '!'.");
+  }
+}
+
+void Pplay_tone(){
+  //todo: for a slight speedup, combine the two chars into a 16 bit int.
+  
+  if(strcmp(buff,"a")==0){
+    mtone=A;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"as")==0){
+    mtone=AS;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"b")==0){
+    mtone=B;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"c")==0){
+    mtone=C;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"cs")==0){
+    mtone=CS;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"d")==0){
+    mtone=D;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"ds")==0){
+    mtone=DS;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"e")==0){
+    mtone=E;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"f")==0){
+    mtone=F;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"fs")==0){
+    mtone=FS;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"g")==0){
+    mtone=G;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"gs")==0){
+    mtone=GS;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"s")==0){
+    mtone=SIL;
+    rdp=Ptone_scale;
+  }
+  else if(strcmp(buff,"!")==0){//valid exit point
+    rdp=Pstart;
+    start_melody();
+  }
+  else{
+    Serial.print("Error: invalid tone:\t");Serial.println(buff);
+    Serial.println("Waiting for '!'.");
+    set=0;
+    rdp=Pinvalid;
+  }
+}
+
 /*Pstart- the entrance to the parser (S->'/'C'!')
  *
  *it also works ahead to determine which command is being parsed.
@@ -496,6 +973,10 @@ void Pstart(){
   }
   else if(strcmp(buff,"/?o")==0){
     rdp=Pqmark_orientation;
+  }
+  else if(strcmp(buff,"/pt")==0){
+    melody_buff_loc=0;
+    rdp=Pplay_tone; 
   }
   /*else if(strcmp(buff,"/?p")==0){
     

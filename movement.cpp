@@ -16,13 +16,13 @@ float ax=0,ay=0,az=0,ar=0,ap=0,aw=0,vx=0,vy=0,vz=0,vr=0,vp=0,vw=0,x=0,y=0,z=0,r=
 
 namespace pin{
 //DIR=direction
-const int PWMfrprop = 9;//front right
+const int PWMfrprop = 6;//front right
 const int DIRfrprop = 8;
-const int PWMflprop = 10;//front left
+const int PWMflprop = 9;//front left
 const int DIRflprop = 11;
 const int PWMbrprop = 3;//back right
 const int DIRbrprop = 4;
-const int PWMblprop = 6;//back left
+const int PWMblprop = 5;//back left
 const int DIRblprop = 7;
 
 //SENS=sensor. 1 means before motor, 2 means after. It senses current used by the propeller.
