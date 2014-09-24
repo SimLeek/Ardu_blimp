@@ -4,11 +4,21 @@ This is a testing platform for various robotics using Arduino, complete with a p
 
 ##Physics
 
+###Blimp type
+
 The desired radius and skin density for any carrying mass can be calculated with:
 
     (1.29-.178)*9.8*(4/3)*pi*r^3 - s*4*pi*r^2 - m = 0
 
 where r is the radius of the spherical balloon (in meters), s is the skin density (in kilograms/meters^2), and m is the mass to be carried (in kilograms).
+
+###Jellyfish type
+
+For drag based low power arial sensor networks, the mass for a specific terminal velocity can be calculated with:
+
+    .5*1.29*v*A*Cd / 9.8 = m
+    
+where A is the area when falling, v is the desired terminal velocity, Cd is the drag coefficient(.42 for hemisphere shape), and m is the mass.
 
 ##Current Availablt Input
 
