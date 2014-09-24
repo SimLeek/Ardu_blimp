@@ -20,6 +20,20 @@ For smaller drag based low power arial sensor networks, the mass for a specific 
     
 where A is the area when falling, v is the desired terminal velocity, Cd is the drag coefficient(.42 for hemisphere shape), and m is the mass.
 
+The upwards drag can be calculates with:
+
+    .5*1.29*v*A*Cd = Fm + m*9.8
+    
+where A is the area when rising, v is the desired maximum velocity, Cd is the drag coefficient, Fm is the available force from the motors, and m is the mass of the device.
+
+Energy savings for hovering in midair can be calculates as:
+
+    Vu/(Vu+Vd)-Fdi*(Vu/(1+Vu/Vd))
+    
+where Vu is the velocity going up, Vd is the velocity going down, and Fdi is the amount of extra drag the jellyfish model has compared to a normal quad-copter when going up. This deos not account for extra losses for flap opening/closing times, so to remove that extra energy loss, use large vertical areas when in low power 'hovering'.
+
+(Note: there are no energy savings for constant traveling with any of these designs. For those, use a regular quad-copter or plane.)
+
 ##Current Availablt Input
 
 command format \<regex\>: /(.{2})([a-z]+[0-9\\.]+)*!
