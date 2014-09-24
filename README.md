@@ -1,7 +1,14 @@
-#Blimp v0.10
+#Blimp v0.11
 
 This is a testing platform for various robotics using Arduino, complete with a parser for the input code
 
+##Physics
+
+The desired radius and skin density for any carrying mass can be calculated with:
+
+    (1.29-.178)*9.8*(4/3)*pi*r^3 - s*4*pi*r^2 - m = 0
+
+where r is the radius of the spherical balloon (in meters), s is the skin density (in kilograms/meters^2), and m is the mass to be carried (in kilograms).
 
 ##Current Availablt Input
 
