@@ -14,7 +14,7 @@ where r is the radius of the spherical balloon (in meters), s is the skin densit
 
 ###Jellyfish type
 
-For smaller drag based low power arial sensor networks, the mass for a specific terminal velocity can be calculated with:
+For smaller drag based low power arial sensor networks that use flaps that close on free-fall, the mass for a specific terminal velocity can be calculated with:
 
     .5*1.29*v*A*Cd / 9.8 = m
     
