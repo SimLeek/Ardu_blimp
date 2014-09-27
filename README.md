@@ -26,11 +26,11 @@ The upwards drag can be calculates with:
     
 where A is the area when rising, v is the desired maximum velocity, Cd is the drag coefficient, Fm is the available force from the motors, and m is the mass of the device.
 
-Energy savings for hovering in midair can be calculates as:
+Energy usage compared to standard quad-copters for hovering in midair can be calculates as:
 
-    Vu/(Vu+Vd)-Fdi*(Vu/(1+Vu/Vd))
+    (1-Vu/(Vu+Vd))*(Fdj/Fdn)=E
     
-where Vu is the velocity going up, Vd is the velocity going down, and Fdi is the amount of extra drag the jellyfish model has compared to a normal quad-copter when going up. This deos not account for extra losses for flap opening/closing times, so to remove that extra energy loss, use large vertical areas when in low power 'hovering'.
+where E is the energy used as a percentage of the original, Vu is the velocity going up, Vd is the velocity going down, Fdj is the drag of the jellyfish model (with velocity excluded), and Fdn is the drag of a normal quadcopter (with velocity excluded). This deos not account for extra losses for flap opening/closing times, so to remove that extra energy loss, use large vertical areas when in low power 'hovering'.
 
 (Note: there are no energy savings for constant traveling with any of these designs. For those, use a regular quad-copter or plane.)
 
