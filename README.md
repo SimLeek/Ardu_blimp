@@ -34,6 +34,13 @@ where E is the energy used as a percentage of the original, Vu is the velocity g
 
 (Note: there are no energy savings for constant traveling with any of these designs. For those, use a regular quad-copter or plane.)
 
+A pure parachute based model would use around 23.9% of the energy of a normal quad-copter:
+    
+    (1-8/(8+2))*(1.2/1)=0.2399
+    
+At 1 cm^2, this has a much better energy usage around 1.96%
+
+
 ##Current Availablt Input
 
 command format \<regex\>: /(.{2})([a-z]+[0-9\\.]+)*!
