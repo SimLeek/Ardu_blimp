@@ -10,7 +10,7 @@ The desired radius and skin density for any carrying mass can be calculated with
 
     (1.29-.178)*9.8*(4/3)*pi*r^3 - s*4*pi*r^2 - m = 0
 
-where r is the radius of the spherical balloon (in meters), s is the skin density (in kilograms/meters^2), and m is the mass to be carried (in kilograms).
+where r is the radius of the spherical balloon (in meters), s is the skin density (in kilograms/meters^2, 288 for latex balloon), and m is the mass to be carried (in kilograms).
 
 ###Jellyfish type
 
